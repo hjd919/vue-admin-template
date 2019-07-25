@@ -46,13 +46,33 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    redirect: '/app/list',
+    name: 'App',
+    meta: {
+      title: 'App应用',
+      icon: 'app'
+    },
+    children: [
+      {
+        path: '/app/create',
+        component: () => import('@/views/app/create'),
+        name: 'CreateApp',
+        meta: { title: '创建App', icon: 'edit' }
+      },
+      {
+        path: '/app/edit/:id(\\d+)',
+        component: () => import('@/views/app/edit'),
+        name: 'EditApp',
+        meta: { title: '编辑App', noCache: true, activeMenu: '/app/list' },
+        hidden: true
+      },
+      {
+        path: '/app/list',
+        component: () => import('@/views/app/list'),
+        name: 'AppList',
+        meta: { title: 'App列表', icon: 'list' }
+      }
+    ]
   },
 
   /*  {
