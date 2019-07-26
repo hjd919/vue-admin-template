@@ -8,7 +8,6 @@
       class="form-container"
       label-width="100px"
     >
-      <!-- row1 -->
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
           <el-form-item label-width="90px" label="appid" prop="appid">
@@ -32,7 +31,6 @@
         </el-col>
       </el-row>
 
-      <!-- row2 -->
       <el-row :gutter="10">
         <el-col :span="12" :xs="24">
           <el-form-item label-width="90px" label="排重url" prop="query_url">
@@ -45,7 +43,7 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <!-- row3 -->
+
       <el-row :gutter="10">
         <el-col :span="12" :xs="24">
           <el-form-item label-width="90px" label="激活url" prop="active_url">
@@ -59,7 +57,6 @@
         </el-col>
       </el-row>
 
-      <!-- row4 -->
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
           <el-form-item
@@ -98,7 +95,6 @@
         </el-col>
       </el-row>
 
-      <!-- row5 -->
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
           <el-form-item label-width="100px" type="number" label="double_open" prop="double_open">
@@ -132,7 +128,7 @@
         </el-col>
       </el-row>
       <el-row :gutter="10">
-        <el-col v-for="(keyword, index) in postForm.keywords" :key="index" :span="6" :xs="24">
+        <el-col v-for="(keyword, index) in postForm.keywords" :key="keyword.key" :span="6" :xs="24">
           <el-form-item
             :label="'关键词' + (index+1)"
             :prop="'keywords.' + index + '.value'"
@@ -154,14 +150,14 @@
 </template>
 
 <script>
-import * as api from '@/api/app'
+import * as api from '@/api/app';
 
 const defaultForm = {
   appid: '',
   app_name: '',
   channel: '',
   bundleId: '',
-  keywords: ['']
+  keywords: [{ value: '' }]
 }
 
 export default {
@@ -179,28 +175,28 @@ export default {
       loading: false,
       userListOptions: [],
       rules: {
-        appid: [{ required: true, message: '请输入appid', trigger: 'blur' }],
-        app_name: [
-          { required: true, message: '请输入app_name', trigger: 'blur' }
-        ],
-        channel: [
-          { required: true, message: '请输入channel', trigger: 'blur' }
-        ],
-        bundleId: [
-          { required: true, message: '请输入bundleId', trigger: 'blur' }
-        ],
-        query_url: [
-          { required: true, message: '请输入query_url', trigger: 'blur' }
-        ],
-        click_url: [
-          { required: true, message: '请输入click_url', trigger: 'blur' }
-        ],
-        active_url: [
-          { required: true, message: '请输入active_url', trigger: 'blur' }
-        ],
-        callback_url: [
-          { required: true, message: '请输入callback_url', trigger: 'blur' }
-        ]
+        // appid: [{ required: true, message: '请输入appid', trigger: 'blur' }],
+        // app_name: [
+        //   { required: true, message: '请输入app_name', trigger: 'blur' }
+        // ],
+        // channel: [
+        //   { required: true, message: '请输入channel', trigger: 'blur' }
+        // ],
+        // bundleId: [
+        //   { required: true, message: '请输入bundleId', trigger: 'blur' }
+        // ],
+        // query_url: [
+        //   { required: true, message: '请输入query_url', trigger: 'blur' }
+        // ],
+        // click_url: [
+        //   { required: true, message: '请输入click_url', trigger: 'blur' }
+        // ],
+        // active_url: [
+        //   { required: true, message: '请输入active_url', trigger: 'blur' }
+        // ],
+        // callback_url: [
+        //   { required: true, message: '请输入callback_url', trigger: 'blur' }
+        // ]
       }
     }
   },
@@ -241,7 +237,7 @@ export default {
     //   this.$store.dispatch('tagsView/updateVisitedView', route)
     // },
     setPageTitle() {
-      const title = 'Edit Article'
+      const title = 'Edit Article';
       document.title = `${title} - ${this.postForm.id}`
     },
     submitForm() {
@@ -250,6 +246,9 @@ export default {
         if (valid) {
           this.loading = true
 
+          // keywords格式化
+          this.postForm.keywords = this.formatKeywords(this.postForm.keywords)
+          console.log(this.postForm)
           api
             .createApp(this.postForm)
             .then(response => {
@@ -258,7 +257,7 @@ export default {
                   message: '提交失败',
                   type: 'error'
                 })
-                return
+                return;
               }
               this.$notify({
                 title: '成功',
@@ -287,8 +286,16 @@ export default {
     },
     addKeyword() {
       this.postForm.keywords.push({
-        value: ''
+        value: '',
+        key: Date.now()
       })
+    },
+    formatKeywords(keywords) {
+      const kfs = []
+      for (const kw of keywords) {
+        kfs.push(kw.value)
+      }
+      return kfs
     }
   }
 }
