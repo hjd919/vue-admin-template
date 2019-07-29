@@ -57,10 +57,11 @@ export const constantRoutes = [
         path: '/app/create',
         component: () => import('@/views/app/create'),
         name: 'CreateApp',
-        meta: { title: '创建App', icon: 'edit' }
+        meta: { title: '创建App', icon: 'edit', activeMenu: '/app/list' },
+        hidden: true
       },
       {
-        path: '/app/edit/:id(\\d+)',
+        path: '/app/edit/:id(\\w+)',
         component: () => import('@/views/app/edit'),
         name: 'EditApp',
         meta: { title: '编辑App', noCache: true, activeMenu: '/app/list' },

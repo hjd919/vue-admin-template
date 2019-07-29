@@ -142,7 +142,7 @@
 
       <el-form-item>
         <el-button @click="addKeyword">新增关键词</el-button>
-        <el-button type="primary" @click="submitForm">立即创建</el-button>
+        <el-button type="primary" @click="submitForm">提交</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -150,9 +150,10 @@
 </template>
 
 <script>
-import * as api from '@/api/app';
+import * as api from '@/api/app'
 
 const defaultForm = {
+  id: '',
   appid: '',
   app_name: '',
   channel: '',
@@ -219,6 +220,9 @@ export default {
       api
         .fetchApp(id)
         .then(response => {
+          // keywords格式化
+          response.data.keywords = this.formatKeywords2(response.data.keywords)
+
           this.postForm = response.data
 
           // set tagsview title
@@ -237,31 +241,30 @@ export default {
     //   this.$store.dispatch('tagsView/updateVisitedView', route)
     // },
     setPageTitle() {
-      const title = 'Edit Article';
+      const title = 'Edit Article'
       document.title = `${title} - ${this.postForm.id}`
     },
     submitForm() {
-      console.log(this.postForm)
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
 
           // keywords格式化
           this.postForm.keywords = this.formatKeywords(this.postForm.keywords)
-          console.log(this.postForm)
+
           api
-            .createApp(this.postForm)
+            .createOrEditApp(this.postForm)
             .then(response => {
               if (response.code) {
                 this.$message({
                   message: '提交失败',
                   type: 'error'
                 })
-                return;
+                return
               }
               this.$notify({
                 title: '成功',
-                message: '发布文章成功',
+                message: '提交成功',
                 type: 'success',
                 duration: 2000
               })
@@ -294,6 +297,16 @@ export default {
       const kfs = []
       for (const kw of keywords) {
         kfs.push(kw.value)
+      }
+      return kfs
+    },
+    formatKeywords2(keywords) {
+      const kfs = []
+      for (const index in keywords) {
+        kfs.push({
+          value: keywords[index],
+          key: Date.now() + index
+        })
       }
       return kfs
     }

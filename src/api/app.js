@@ -24,18 +24,18 @@ export function fetchPv(pv) {
   })
 }
 
-export function createApp(data) {
+export function createOrEditApp(data) {
   return request({
-    url: '/app/create',
+    url: '/app/createOrEdit',
     method: 'post',
     data
   })
 }
 
-export function updateApp(data) {
+export function removeApp(id) {
   return request({
-    url: '/app/update',
-    method: 'post',
-    data
+    url: '/app/remove',
+    method: 'get',
+    params: { id }
   })
 }
