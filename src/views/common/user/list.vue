@@ -1,7 +1,7 @@
 <template>
-  <div class="app-container">
+  <div class="user-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.appid" placeholder="appid" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.id" placeholder="用户id" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
@@ -14,32 +14,32 @@
 
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
 
-      <el-table-column align="center" label="渠道">
+      <el-table-column align="center" label="ID">
         <template slot-scope="scope">
-          <span>{{ scope.row.channel }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="appid">
+      <el-table-column align="center" label="用户名">
         <template slot-scope="scope">
-          <span>{{ scope.row.appid }}</span>
+          <span>{{ scope.row.username }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="app名称">
+      <el-table-column align="center" label="密码">
         <template slot-scope="scope">
-          <span>{{ scope.row.app_name }}</span>
+          <span>{{ scope.row.password }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="50px" label="操作">
         <template slot-scope="scope">
-          <router-link :to="'/app/edit/'+scope.row.id">
+          <router-link :to="'/user/edit/'+scope.row.id">
             <el-button type="primary" size="mini">
               编辑
             </el-button>
           </router-link>
-          <el-button type="danger" size="mini" @click="removeApp(scope.row.id)">
+          <el-button type="danger" size="mini" @click="removeUser(scope.row.id)">
             删除
           </el-button>
         </template>
@@ -87,8 +87,8 @@ export default {
       this.listQuery.page = 1
       this.getList()
     },
-    removeApp(id) {
-      api.removeApp(id).then(response => {
+    removeUser(id) {
+      api.removeUser(id).then(response => {
         this.$message({
           message: '删除成功',
           type: 'success'
