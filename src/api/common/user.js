@@ -1,10 +1,34 @@
 import request from '@/utils/request'
 
+export function createOrEdit(data) {
+  return request({
+    url: '/user/createOrEdit',
+    method: 'post',
+    data
+  })
+}
+
 export function login(data) {
   return request({
     url: '/user/login',
     method: 'post',
     data
+  })
+}
+
+export function fetchList(query) {
+  return request({
+    url: '/user/list',
+    method: 'get',
+    params: query
+  })
+}
+
+export function fetchDetail(id) {
+  return request({
+    url: '/user/detail',
+    method: 'get',
+    params: { id }
   })
 }
 

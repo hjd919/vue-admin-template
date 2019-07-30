@@ -1,35 +1,36 @@
 import Layout from '@/layout'
 
 const userRouter = {
-    path: '/user',
-    component: Layout,
-    redirect: '/user/list',
-    name: 'App',
-    meta: {
-        title: 'App应用',
-        icon: 'app'
+  path: '/user',
+  component: Layout,
+  redirect: '/user/list',
+  name: 'User',
+  meta: {
+    title: '用户管理',
+    icon: 'user'
+  },
+  children: [
+    {
+      path: '/user/create',
+      component: () => import('@/views/common/user/create'),
+      name: 'CreateUser',
+      meta: { title: '创建用户', activeMenu: '/user/list' },
+      hidden: true
     },
-    children: [
-        {
-            path: '/user/create',
-            component: () => import('@/views/app/create'),
-            name: 'CreateApp',
-            meta: { title: '创建App', icon: 'edit' }
-        },
-        {
-            path: '/user/edit/:id(\\d+)',
-            component: () => import('@/views/app/edit'),
-            name: 'EditApp',
-            meta: { title: '编辑App', noCache: true, activeMenu: '/app/list' },
-            hidden: true
-        },
-        {
-            path: '/user/list',
-            component: () => import('@/views/app/list'),
-            name: 'AppList',
-            meta: { title: 'App列表', icon: 'list' }
-        }
-    ]
+    {
+      path: '/user/edit/:id(\\d+)',
+      component: () => import('@/views/common/user/edit'),
+      name: 'EditUser',
+      meta: { title: '编辑用户', noCache: true, activeMenu: '/user/list' },
+      hidden: true
+    },
+    {
+      path: '/user/list',
+      component: () => import('@/views/common/user/list'),
+      name: 'UserList',
+      meta: { title: '用户列表', icon: 'user' }
+    }
+  ]
 }
 
 export default userRouter

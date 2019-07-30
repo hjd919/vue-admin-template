@@ -8,19 +8,11 @@ export function fetchList(query) {
   })
 }
 
-export function fetchApp(id) {
+export function fetchDetail(id) {
   return request({
     url: '/app/detail',
     method: 'get',
     params: { id }
-  })
-}
-
-export function fetchPv(pv) {
-  return request({
-    url: '/app/pv',
-    method: 'get',
-    params: { pv }
   })
 }
 

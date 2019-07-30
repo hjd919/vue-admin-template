@@ -6,7 +6,7 @@
 import AppDetail from './components/AppDetail'
 
 export default {
-  name: 'EditForm',
+  name: 'EditApp',
   components: { AppDetail }
 }
 </script>

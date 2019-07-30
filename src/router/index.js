@@ -7,6 +7,7 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 import userRouter from './common/user'
+import loginRouter from './common/login'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -33,12 +34,7 @@ import userRouter from './common/user'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-
+  loginRouter,
   {
     path: '/404',
     component: () => import('@/views/404'),
@@ -51,15 +47,15 @@ export const constantRoutes = [
     redirect: '/app/list',
     name: 'App',
     meta: {
-      title: 'App应用',
-      icon: 'app'
+      title: 'APP管理',
+      icon: 'table'
     },
     children: [
       {
         path: '/app/create',
         component: () => import('@/views/app/create'),
         name: 'CreateApp',
-        meta: { title: '创建App', icon: 'edit', activeMenu: '/app/list' },
+        meta: { title: '创建App', activeMenu: '/app/list' },
         hidden: true
       },
       {
@@ -73,7 +69,7 @@ export const constantRoutes = [
         path: '/app/list',
         component: () => import('@/views/app/list'),
         name: 'AppList',
-        meta: { title: 'App列表', icon: 'list' }
+        meta: { title: 'APP管理', icon: 'table' }
       }
     ]
   },

@@ -143,7 +143,7 @@
       <el-form-item>
         <el-button @click="addKeyword">新增关键词</el-button>
         <el-button type="primary" @click="submitForm">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button @click="resetForm('postForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -218,7 +218,7 @@ export default {
   methods: {
     fetchData(id) {
       api
-        .fetchApp(id)
+        .fetchDetail(id)
         .then(response => {
           // keywords格式化
           response.data.keywords = this.formatKeywords2(response.data.keywords)

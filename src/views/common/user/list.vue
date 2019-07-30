@@ -5,22 +5,14 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <router-link :to="'/app/create'">
+      <router-link to="/user/create">
         <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">
           添加
         </el-button>
       </router-link>
-      <!-- <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
-        Export
-      </el-button> -->
     </div>
 
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
-      <!-- <el-table-column align="center" label="ID" width="80">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column> -->
 
       <el-table-column align="center" label="渠道">
         <template slot-scope="scope">
@@ -59,11 +51,11 @@
 </template>
 
 <script>
-import * as api from '@/api/app'
+import * as api from '@/api/common/user'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'AppList',
+  name: 'UserList',
   components: { Pagination },
   filters: {
     statusFilter(status) {
@@ -81,7 +73,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        appid: undefined,
+        id: undefined,
         page: 1,
         limit: 20
       }

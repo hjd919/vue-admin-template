@@ -6,7 +6,7 @@
 import AppDetail from './components/AppDetail'
 
 export default {
-  name: 'CreateForm',
+  name: 'CreateApp',
   components: { AppDetail }
 }
 </script>
