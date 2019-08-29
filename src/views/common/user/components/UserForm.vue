@@ -60,7 +60,8 @@ export default {
   computed: {},
   created() {
     if (this.isEdit) {
-      const id = this.$route.params && this.$route.params.id
+      console.log(this.$route)
+      const id = this.$route.query.id
       this.fetchData(id)
     } else {
       this.postForm = Object.assign({}, defaultForm)
@@ -69,7 +70,7 @@ export default {
   methods: {
     fetchData(id) {
       api
-        .fetchApp(id)
+        .fetchDetail(id)
         .then(response => {
           this.postForm = response.data
 

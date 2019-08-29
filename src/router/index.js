@@ -41,6 +41,9 @@ export const constantRoutes = [
     hidden: true
   },
 
+  // 模块
+  userRouter,
+
   {
     path: '/',
     component: Layout,
@@ -73,7 +76,42 @@ export const constantRoutes = [
       }
     ]
   },
-  userRouter,
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/mobile/list',
+    name: 'Mobile',
+    meta: {
+      title: '手机管理',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: '/mobile/list',
+        component: () => import('@/views/mobile/list'),
+        name: 'MobileList',
+        meta: { title: '手机管理', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/task/list',
+    name: 'Task',
+    meta: {
+      title: '任务管理',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: '/task/list',
+        component: () => import('@/views/task/list'),
+        name: 'TaskList',
+        meta: { title: '任务管理', icon: 'table' }
+      }
+    ]
+  },
   /*  {
     path: '/',
     component: Layout,

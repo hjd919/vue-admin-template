@@ -106,7 +106,7 @@ export default {
     },
     getList() {
       this.listLoading = true
-      api.fetchList(this.listQuery).then(response => {
+      api.getList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
         this.listLoading = false

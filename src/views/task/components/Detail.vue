@@ -15,13 +15,18 @@
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">
-          <el-form-item label-width="90px" label="app名称" prop="app_name">
-            <el-input v-model="postForm.app_name" placeholder="请输入内容" />
+          <el-form-item label-width="90px" label="关键词" prop="keyword">
+            <el-input v-model="postForm.keyword" placeholder="请输入内容" />
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">
-          <el-form-item label-width="90px" label="channel" prop="channel">
-            <el-input v-model="postForm.channel" placeholder="请输入内容" />
+          <el-form-item label-width="90px" label="组号" prop="group">
+            <el-input v-model="postForm.group" placeholder="请输入内容" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="6" :xs="24">
+          <el-form-item label-width="90px" label="手机数" prop="mobile_num">
+            <el-input v-model="postForm.mobile_num" placeholder="请输入内容" />
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">

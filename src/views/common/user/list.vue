@@ -1,5 +1,5 @@
 <template>
-  <div class="user-container">
+  <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.id" placeholder="用户id" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
@@ -26,15 +26,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="密码">
-        <template slot-scope="scope">
-          <span>{{ scope.row.password }}</span>
-        </template>
-      </el-table-column>
-
       <el-table-column min-width="50px" label="操作">
         <template slot-scope="scope">
-          <router-link :to="'/user/edit/'+scope.row.id">
+          <router-link :to="'/user/edit?id='+scope.row.id">
             <el-button type="primary" size="mini">
               编辑
             </el-button>
