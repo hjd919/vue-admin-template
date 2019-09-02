@@ -62,6 +62,13 @@ export const constantRoutes = [
         hidden: true
       },
       {
+        path: '/app/keyword/:appid(\\w+)',
+        component: () => import('@/views/app/keyword'),
+        name: 'AppKeyword',
+        meta: { title: 'App关键词', noCache: true, activeMenu: '/app/list' },
+        hidden: true
+      },
+      {
         path: '/app/edit/:id(\\w+)',
         component: () => import('@/views/app/edit'),
         name: 'EditApp',
@@ -77,9 +84,8 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/',
+    path: '/mobile',
     component: Layout,
-    redirect: '/mobile/list',
     name: 'Mobile',
     meta: {
       title: '手机管理',
@@ -87,7 +93,7 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: '/mobile/list',
+        path: 'list',
         component: () => import('@/views/mobile/list'),
         name: 'MobileList',
         meta: { title: '手机管理', icon: 'table' }
@@ -95,9 +101,8 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/',
+    path: '/task',
     component: Layout,
-    redirect: '/task/list',
     name: 'Task',
     meta: {
       title: '任务管理',
@@ -105,7 +110,14 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: '/task/list',
+        path: 'create',
+        component: () => import('@/views/task/create'),
+        name: 'CreateTask',
+        meta: { title: '创建任务', activeMenu: '/task/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
         component: () => import('@/views/task/list'),
         name: 'TaskList',
         meta: { title: '任务管理', icon: 'table' }

@@ -11,144 +11,68 @@
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
           <el-form-item label-width="90px" label="appid" prop="appid">
-            <el-input v-model="postForm.appid" placeholder="请输入内容" />
+            <el-input-number v-model="postForm.appid" controls-position="right" />
+            <!-- <el-input v-model="postForm.appid" placeholder="请输入内容" /> -->
           </el-form-item>
         </el-col>
-        <el-col :span="6" :xs="24">
+        <!-- <el-col :span="6" :xs="24">
           <el-form-item label-width="90px" label="关键词" prop="keyword">
-            <el-input v-model="postForm.keyword" placeholder="请输入内容" />
+            <el-input v-model="postForm.keyword" placeholder="请输入关键词" />
           </el-form-item>
-        </el-col>
+        </el-col>-->
         <el-col :span="6" :xs="24">
-          <el-form-item label-width="90px" label="组号" prop="group">
-            <el-input v-model="postForm.group" placeholder="请输入内容" />
+          <el-form-item label-width="90px" label="手机组号" prop="group">
+            <el-input-number v-model="postForm.group" controls-position="right" />
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">
           <el-form-item label-width="90px" label="手机数" prop="mobile_num">
-            <el-input v-model="postForm.mobile_num" placeholder="请输入内容" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="90px" label="bundleId" prop="bundleId">
-            <el-input v-model="postForm.bundleId" placeholder="请输入内容" />
+            <el-input-number v-model="postForm.mobile_num" placeholder="请输入手机数" />
           </el-form-item>
         </el-col>
       </el-row>
+
+      <el-form-item label-width="90px" label="开始时间" prop="time">
+        <el-date-picker
+          v-model="postForm.time"
+          type="datetimerange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          value-format="yyyy-MM-dd HH:mm:ss"
+        />
+        <!-- <el-input v-model="postForm.start_time" placeholder="请输入内容" /> -->
+      </el-form-item>
+
+      <el-form-item label-width="90px" label="状态" prop="status">
+        <el-radio-group v-model="postForm.status">
+          <el-radio :label="1">上架</el-radio>
+          <el-radio :label="0">下架</el-radio>
+        </el-radio-group>
+        <!-- <el-input v-model="postForm.status" placeholder="请输入内容" /> -->
+      </el-form-item>
 
       <el-row :gutter="10">
         <el-col :span="12" :xs="24">
-          <el-form-item label-width="90px" label="排重url" prop="query_url">
-            <el-input v-model="postForm.query_url" placeholder="请输入内容" />
+          <el-form-item label-width="90px" label="下单成功数" prop="order_num">
+            <el-input-number v-model="postForm.order_num" placeholder="请输入下单成功数" />
           </el-form-item>
         </el-col>
         <el-col :span="12" :xs="24">
-          <el-form-item label-width="90px" label="点击url" prop="click_url">
-            <el-input v-model="postForm.click_url" placeholder="请输入内容" />
+          <el-form-item label-width="90px" label="接口返回数" prop="fetch_num">
+            <el-input-number v-model="postForm.fetch_num" placeholder="请输入接口返回数" />
           </el-form-item>
         </el-col>
       </el-row>
-
-      <el-row :gutter="10">
-        <el-col :span="12" :xs="24">
-          <el-form-item label-width="90px" label="激活url" prop="active_url">
-            <el-input v-model="postForm.active_url" placeholder="请输入内容" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12" :xs="24">
-          <el-form-item label-width="90px" label="回调url" prop="callback_url">
-            <el-input v-model="postForm.callback_url" placeholder="请输入内容" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row :gutter="10">
-        <el-col :span="6" :xs="24">
-          <el-form-item
-            label-width="100px"
-            type="number"
-            label="callback_time"
-            prop="callback_time"
-          >
-            <el-input-number v-model="postForm.callback_time" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item
-            label-width="120px"
-            type="number"
-            label="max_callback_time"
-            prop="max_callback_time"
-          >
-            <el-input-number v-model="postForm.max_callback_time" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="100px" type="number" label="open_time" prop="open_time">
-            <el-input-number v-model="postForm.open_time" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item
-            label-width="120px"
-            type="number"
-            label="max_open_time"
-            prop="max_open_time"
-          >
-            <el-input-number v-model="postForm.max_open_time" controls-position="right" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row :gutter="10">
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="100px" type="number" label="double_open" prop="double_open">
-            <el-input-number v-model="postForm.double_open" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="100px" type="number" label="taskType" prop="taskType">
-            <el-input-number v-model="postForm.taskType" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="100px" type="number" label="needClean" prop="needClean">
-            <el-input-number v-model="postForm.needClean" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item
-            label-width="100px"
-            type="number"
-            label="version_limit"
-            prop="version_limit"
-          >
-            <el-input-number v-model="postForm.version_limit" controls-position="right" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6" :xs="24">
-          <el-form-item label-width="100px" type="text" label="process" prop="process">
-            <el-input v-model="postForm.process" placeholder="请输入内容" />
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="10">
-        <el-col v-for="(keyword, index) in postForm.keywords" :key="keyword.key" :span="6" :xs="24">
-          <el-form-item
-            :label="'关键词' + (index+1)"
-            :prop="'keywords.' + index + '.value'"
-            :rules="{required: true, message: '关键词不能为空', trigger: 'blur'}"
-          >
-            <el-input v-model="keyword.value" />
-            <el-button @click.prevent="removeKeyword(keyword)">删除</el-button>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
+      <el-form-item label-width="90px" label="关键词" prop="fetch_num">
+        <el-tag
+          v-for="(item,key) in postForm.keywords"
+          :key="key"
+          style="margin-right:10px"
+        >{{ item }}</el-tag>
+      </el-form-item>
       <el-form-item>
-        <el-button @click="addKeyword">新增关键词</el-button>
         <el-button type="primary" @click="submitForm">提交</el-button>
-        <el-button @click="resetForm('postForm')">重置</el-button>
         <el-button @click="goBack">返回</el-button>
       </el-form-item>
     </el-form>
@@ -156,15 +80,19 @@
 </template>
 
 <script>
-import * as api from '@/api/app';
+import * as api from '@/api/task'
 
 const defaultForm = {
-  id: '',
   appid: '',
-  app_name: '',
-  channel: '',
-  bundleId: '',
-  keywords: [{ value: '' }]
+  keywords: [],
+  group: '',
+  mobile_num: '',
+  start_time: '',
+  end_time: '',
+  status: 1,
+  order_num: '',
+  fetch_num: '',
+  time: null
 }
 
 export default {
@@ -178,33 +106,11 @@ export default {
   },
   data() {
     return {
+      keywords: ['11', '222'],
       postForm: Object.assign({}, defaultForm),
       loading: false,
       userListOptions: [],
-      rules: {
-        // appid: [{ required: true, message: '请输入appid', trigger: 'blur' }],
-        // app_name: [
-        //   { required: true, message: '请输入app_name', trigger: 'blur' }
-        // ],
-        // channel: [
-        //   { required: true, message: '请输入channel', trigger: 'blur' }
-        // ],
-        // bundleId: [
-        //   { required: true, message: '请输入bundleId', trigger: 'blur' }
-        // ],
-        // query_url: [
-        //   { required: true, message: '请输入query_url', trigger: 'blur' }
-        // ],
-        // click_url: [
-        //   { required: true, message: '请输入click_url', trigger: 'blur' }
-        // ],
-        // active_url: [
-        //   { required: true, message: '请输入active_url', trigger: 'blur' }
-        // ],
-        // callback_url: [
-        //   { required: true, message: '请输入callback_url', trigger: 'blur' }
-        // ]
-      }
+      rules: {}
     }
   },
   computed: {},
@@ -214,12 +120,12 @@ export default {
       this.fetchData(id)
     } else {
       this.postForm = Object.assign({}, defaultForm)
+      // 初始化
+      const query = this.$route.query
+      this.postForm.appid = query.appid
+      this.postForm.keywords =
+        typeof query.keywords === 'string' ? [query.keywords] : query.keywords
     }
-
-    // Why need to make a copy of this.$route here?
-    // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
-    // https://github.com/PanJiaChen/vue-element-admin/issues/1221
-    // this.tempRoute = Object.assign({}, this.$route)
   },
   methods: {
     goBack() {
@@ -233,43 +139,30 @@ export default {
           response.data.keywords = this.formatKeywords2(response.data.keywords)
 
           this.postForm = response.data
-
-          // set tagsview title
-          // this.setTagsViewTitle()
-
-          // set page title
-          this.setPageTitle()
         })
         .catch(err => {
           console.log(err)
         })
     },
-    // setTagsViewTitle() {
-    //   const title = 'Edit Article'
-    //   const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
-    //   this.$store.dispatch('tagsView/updateVisitedView', route)
-    // },
-    setPageTitle() {
-      const title = 'Edit Article';
-      document.title = `${title} - ${this.postForm.id}`
-    },
     submitForm() {
+      console.log('submitForm')
       this.$refs.postForm.validate(valid => {
         if (valid) {
+          console.log('submitForm')
           this.loading = true
-
-          // keywords格式化
-          this.postForm.keywords = this.formatKeywords(this.postForm.keywords)
-
+          // 获取开始和结束时间
+          this.postForm.start_time = this.postForm.time[0]
+          this.postForm.end_time = this.postForm.time[1]
+          // 提交
           api
-            .createOrEditApp(this.postForm)
+            .add(this.postForm)
             .then(response => {
-              if (response.code) {
+              if (response.code < 0) {
                 this.$message({
-                  message: '提交失败',
+                  message: response.data,
                   type: 'error'
                 })
-                return;
+                return
               }
               this.$notify({
                 title: '成功',
@@ -279,7 +172,7 @@ export default {
               })
               this.loading = false
 
-              this.$router.push('/app/list')
+              this.$router.push('/task/list')
             })
             .catch(err => {
               console.log(err)

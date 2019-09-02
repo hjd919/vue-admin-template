@@ -23,3 +23,10 @@ export function add(data) {
   })
 }
 
+export function edit(data) {
+  return request({
+    url: '/mobile',
+    method: 'put',
+    data
+  })
+}

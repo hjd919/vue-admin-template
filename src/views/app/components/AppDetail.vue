@@ -11,7 +11,7 @@
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
           <el-form-item label-width="90px" label="appid" prop="appid">
-            <el-input v-model="postForm.appid" placeholder="请输入内容" />
+            <el-input-number v-model="postForm.appid" controls-position="right" />
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">
@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import * as api from '@/api/app';
+import * as api from '@/api/app'
 
 const defaultForm = {
   id: '',
@@ -222,7 +222,7 @@ export default {
     },
     fetchData(id) {
       api
-        .fetchDetail(id)
+        .getDetail(id)
         .then(response => {
           // keywords格式化
           response.data.keywords = this.formatKeywords2(response.data.keywords)
@@ -245,7 +245,7 @@ export default {
     //   this.$store.dispatch('tagsView/updateVisitedView', route)
     // },
     setPageTitle() {
-      const title = 'Edit Article';
+      const title = 'Edit Article'
       document.title = `${title} - ${this.postForm.id}`
     },
     submitForm() {
@@ -264,7 +264,7 @@ export default {
                   message: '提交失败',
                   type: 'error'
                 })
-                return;
+                return
               }
               this.$notify({
                 title: '成功',

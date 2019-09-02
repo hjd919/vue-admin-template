@@ -42,6 +42,11 @@
 
       <el-table-column min-width="50px" label="操作">
         <template slot-scope="scope">
+          <router-link :to="'/app/keyword/'+scope.row.appid">
+            <el-button type="primary" size="mini">
+              关键词
+            </el-button>
+          </router-link>
           <router-link :to="'/app/edit/'+scope.row.id">
             <el-button type="primary" size="mini">
               编辑

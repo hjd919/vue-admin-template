@@ -17,7 +17,7 @@ export function getDetail(id) {
 
 export function add(data) {
   return request({
-    url: '/task/add',
+    url: '/task',
     method: 'post',
     data
   })
