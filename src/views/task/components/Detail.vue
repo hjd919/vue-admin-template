@@ -65,12 +65,15 @@
         </el-col>
       </el-row>
       <el-form-item label-width="90px" label="关键词" prop="fetch_num">
+        <el-tag>{{ postForm.keyword }}</el-tag>
+      </el-form-item>
+      <!-- <el-form-item label-width="90px" label="关键词" prop="fetch_num">
         <el-tag
           v-for="(item,key) in postForm.keywords"
           :key="key"
           style="margin-right:10px"
         >{{ item }}</el-tag>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="submitForm">提交</el-button>
         <el-button @click="goBack">返回</el-button>
@@ -106,7 +109,8 @@ export default {
   },
   data() {
     return {
-      keywords: ['11', '222'],
+      keyword: '11',
+      // keywords: ['11', '222'],
       postForm: Object.assign({}, defaultForm),
       loading: false,
       userListOptions: [],
@@ -123,8 +127,9 @@ export default {
       // 初始化
       const query = this.$route.query
       this.postForm.appid = query.appid
-      this.postForm.keywords =
-        typeof query.keywords === 'string' ? [query.keywords] : query.keywords
+      // this.postForm.keywords =
+      //   typeof query.keywords === 'string' ? [query.keywords] : query.keywords
+      this.postForm.keyword = query.keyword
     }
   },
   methods: {
@@ -148,7 +153,6 @@ export default {
       console.log('submitForm')
       this.$refs.postForm.validate(valid => {
         if (valid) {
-          console.log('submitForm')
           this.loading = true
           // 获取开始和结束时间
           this.postForm.start_time = this.postForm.time[0]

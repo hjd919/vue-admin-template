@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-button type="primary" size="mini" @click="handleAddTask">添加任务</el-button>
+    <!-- <el-button type="primary" size="mini" @click="handleAddTask">添加任务</el-button> -->
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -13,6 +13,11 @@
       >
       <el-table-column type="selection" width="55" />
       <el-table-column prop="keyword" label="关键词" />
+      <el-table-column min-width="50px" label="操作">
+        <template slot-scope="scope">
+          <el-button type="danger" size="mini" @click="handleAddTask(scope.row.keyword)">添加任务</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -37,18 +42,22 @@ export default {
     this.getList(appid)
   },
   methods: {
-    handleAddTask() {
-      const list = this.list
+    handleAddTask(keyword) {
+      // const list = this.list
       // 传参数：关键词
-      const keywords = this.multipleSelection.map((val, index) => {
-        return list[index]['keyword']
-      })
-      console.log(keywords)
+      // const keywords = this.multipleSelection.map((val, index) => {
+      //   return list[index]['keyword']
+      // })
       // 跳到添加任务页面
-      this.$router.push({
+      // this.$router.push({
+      //   name: 'CreateTask',
+      //   query: { appid: this.appid, keyword: keyword }
+      // })
+      const routeUrl = this.$router.resolve({
         name: 'CreateTask',
-        query: { appid: this.appid, keywords: keywords }
+        query: { appid: this.appid, keyword: keyword }
       })
+      window.open(routeUrl.href, '_blank')
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
