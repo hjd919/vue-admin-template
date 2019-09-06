@@ -103,7 +103,20 @@
         </el-col>
         <el-col :span="6" :xs="24">
           <el-form-item label-width="100px" type="number" label="taskType" prop="taskType">
-            <el-input-number v-model="postForm.taskType" controls-position="right" />
+            <el-input-number
+              v-model="postForm.taskType"
+              controls-position="right"
+              placeholder="0回调任务 1激活任务"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="6" :xs="24">
+          <el-form-item label-width="100px" type="number" label="apiType" prop="apiType">
+            <el-input-number
+              v-model="postForm.apiType"
+              controls-position="right"
+              placeholder="1回调接口 2激活接口"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="6" :xs="24">

@@ -7,7 +7,7 @@ git push
 
 server_host=101.200.57.206
 server_user=hjd
-deploy_dir=/home/hjd/brush/admin
+deploy_dir=/home/webapps/brush/admin
 
 deployAdmin() {
     echo "--编译源码"

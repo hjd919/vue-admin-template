@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.appid" placeholder="appid" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.channel" placeholder="渠道" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
@@ -42,9 +42,9 @@
 
       <el-table-column min-width="50px" label="操作">
         <template slot-scope="scope">
-          <router-link :to="'/app/keyword/'+scope.row.appid">
+          <router-link :to="'/task/create?channel='+scope.row.channel">
             <el-button type="primary" size="mini">
-              关键词
+              增加任务
             </el-button>
           </router-link>
           <router-link :to="'/app/edit/'+scope.row.id">
@@ -86,7 +86,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        appid: undefined,
+        channel: undefined,
         page: 1,
         limit: 20
       }

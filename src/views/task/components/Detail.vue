@@ -10,9 +10,8 @@
     >
       <el-row :gutter="10">
         <el-col :span="6" :xs="24">
-          <el-form-item label-width="90px" label="appid" prop="appid">
-            <el-input-number v-model="postForm.appid" controls-position="right" />
-            <!-- <el-input v-model="postForm.appid" placeholder="请输入内容" /> -->
+          <el-form-item label-width="90px" label="渠道" prop="fetch_num">
+            <el-input v-model="postForm.channel" :disabled="true" />
           </el-form-item>
         </el-col>
         <!-- <el-col :span="6" :xs="24">
@@ -65,15 +64,13 @@
         </el-col>
       </el-row>
       <el-form-item label-width="90px" label="关键词" prop="fetch_num">
-        <el-tag>{{ postForm.keyword }}</el-tag>
+        <el-autocomplete
+          v-model="postForm.keyword"
+          :fetch-suggestions="keywordSearchAsync"
+          placeholder="请输入"
+          @select="handleSelect"
+        />
       </el-form-item>
-      <!-- <el-form-item label-width="90px" label="关键词" prop="fetch_num">
-        <el-tag
-          v-for="(item,key) in postForm.keywords"
-          :key="key"
-          style="margin-right:10px"
-        >{{ item }}</el-tag>
-      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="submitForm">提交</el-button>
         <el-button @click="goBack">返回</el-button>
@@ -126,13 +123,23 @@ export default {
       this.postForm = Object.assign({}, defaultForm)
       // 初始化
       const query = this.$route.query
-      this.postForm.appid = query.appid
+      this.postForm.channel = query.channel
       // this.postForm.keywords =
       //   typeof query.keywords === 'string' ? [query.keywords] : query.keywords
-      this.postForm.keyword = query.keyword
+      // this.postForm.keyword = query.keyword
     }
   },
   methods: {
+    async keywordSearchAsync(queryString, cb) {
+      const results = await api.keywordSearch(
+        queryString,
+        this.postForm.channel
+      )
+      cb(results.data.res)
+    },
+    handleSelect(item) {
+      console.log(item)
+    },
     goBack() {
       this.$router.go(-1)
     },
