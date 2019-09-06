@@ -164,6 +164,16 @@ export default {
           // 获取开始和结束时间
           this.postForm.start_time = this.postForm.time[0]
           this.postForm.end_time = this.postForm.time[1]
+          const nowTS = (new Date()).valueOf()
+          const endTS = (new Date(this.postForm.end_time)).valueOf()
+          if (nowTS > endTS) {
+            this.$message({
+              message: '结束时间不能小于当前时间',
+              type: 'error'
+            })
+            return
+          }
+
           // 提交
           api
             .add(this.postForm)
