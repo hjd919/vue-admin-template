@@ -124,6 +124,23 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/req',
+    component: Layout,
+    name: 'Req',
+    meta: {
+      title: '请求日志',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/req/list'),
+        name: 'ReqList',
+        meta: { title: '请求日志', icon: 'table' }
+      }
+    ]
+  },
   /*  {
     path: '/',
     component: Layout,
