@@ -31,6 +31,7 @@
       style="width: 100%"
     >
       <el-table-column prop="channel" label="渠道" />
+      <el-table-column prop="group" label="组号" />
       <el-table-column prop="app_name" label="应用" />
       <el-table-column prop="keyword" label="关键词" />
       <el-table-column prop="start_time" label="开始时间" />
