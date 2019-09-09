@@ -6,7 +6,7 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
-import userRouter from './common/user'
+// import userRouter from './common/user'
 import loginRouter from './common/login'
 
 /**
@@ -42,7 +42,7 @@ export const constantRoutes = [
   },
 
   // 模块
-  userRouter,
+  // userRouter,
 
   {
     path: '/',
