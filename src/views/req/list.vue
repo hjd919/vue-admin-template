@@ -8,13 +8,6 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-      <el-input
-        v-model="listQuery.mobile"
-        placeholder="手机UUID"
-        style="width: 200px;"
-        class="filter-item"
-        @keyup.enter.native="handleFilter"
-      />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
     </div>
 
@@ -28,7 +21,6 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column prop="channel" label="渠道" />
-      <el-table-column prop="mobile" label="手机UUID" />
       <el-table-column prop="url_type" label="接口类型" />
       <el-table-column prop="url" label="接口URL" />
       <el-table-column prop="res" label="接口结果" />
