@@ -33,16 +33,18 @@
 
       <el-form-item label-width="90px" label="开始时间" prop="time">
         <el-date-picker
-          v-model="postForm.time"
-          type="datetimerange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
+          v-model="postForm.start_time"
+          type="datetime"
           value-format="yyyy-MM-dd HH:mm:ss"
         />
-        <!-- <el-input v-model="postForm.start_time" placeholder="请输入内容" /> -->
       </el-form-item>
-
+      <el-form-item label-width="90px" label="结束时间" prop="time">
+        <el-date-picker
+          v-model="postForm.end_time"
+          type="datetime"
+          value-format="yyyy-MM-dd HH:mm:ss"
+        />
+      </el-form-item>
       <el-form-item label-width="90px" label="状态" prop="status">
         <el-radio-group v-model="postForm.status">
           <el-radio :label="1">上架</el-radio>
@@ -91,8 +93,8 @@ const defaultForm = {
   end_time: '',
   status: 1,
   order_num: '',
-  fetch_num: '',
-  time: null
+  fetch_num: ''
+  // time: null
 }
 
 export default {
@@ -162,10 +164,10 @@ export default {
         if (valid) {
           this.loading = true
           // 获取开始和结束时间
-          this.postForm.start_time = this.postForm.time[0]
-          this.postForm.end_time = this.postForm.time[1]
-          const nowTS = (new Date()).valueOf()
-          const endTS = (new Date(this.postForm.end_time)).valueOf()
+          // this.postForm.start_time = this.postForm.time[0]
+          // this.postForm.end_time = this.postForm.time[1]
+          const nowTS = new Date().valueOf()
+          const endTS = new Date(this.postForm.end_time).valueOf()
           if (nowTS > endTS) {
             this.$message({
               message: '结束时间不能小于当前时间',
