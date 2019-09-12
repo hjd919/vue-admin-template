@@ -9,6 +9,7 @@
         @keyup.enter.native="handleFilter"
       />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-reload" @click="refreshList">刷新</el-button>
     </div>
 
     <el-table
@@ -69,6 +70,9 @@ export default {
     this.getList()
   },
   methods: {
+    refreshList() {
+      this.getList()
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
