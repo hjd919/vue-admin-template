@@ -8,6 +8,13 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
+      <el-input
+        v-model="listQuery.app_name"
+        placeholder="应用"
+        style="width: 200px;"
+        class="filter-item"
+        @keyup.enter.native="handleFilter"
+      />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
       <el-button class="filter-item" type="primary" icon="el-icon-reload" @click="refreshList">刷新</el-button>
       <!-- <router-link :to="'/task/create'">
@@ -67,28 +74,28 @@
 </template>
 
 <script>
-import * as api from '@/api/task'
-import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
+import * as api from "@/api/task";
+import Pagination from "@/components/Pagination"; // Secondary package based on el-pagination
 
-const statusDesc = ['已停止', '进行中', '已完成']
-const statusTag = ['info', '', 'success']
+const statusDesc = ["已停止", "进行中", "已完成"];
+const statusTag = ["info", "", "success"];
 
 export default {
-  name: 'TaskList',
+  name: "TaskList",
   components: { Pagination },
   filters: {
     statusFilter: function(value) {
       if (statusDesc[value]) {
-        return statusDesc[value]
+        return statusDesc[value];
       } else {
-        return '未知'
+        return "未知";
       }
     },
     statusTagFilter: function(value) {
       if (statusTag[value]) {
-        return statusTag[value]
+        return statusTag[value];
       } else {
-        return ''
+        return "";
       }
     }
   },
@@ -99,47 +106,48 @@ export default {
       listLoading: true,
       listQuery: {
         channel: undefined,
+        app_name: null,
         page: 1,
         limit: 20
       }
-    }
+    };
   },
   created() {
-    this.getList()
+    this.getList();
   },
   methods: {
     refreshList() {
-      this.getList()
+      this.getList();
     },
     handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
+      this.listQuery.page = 1;
+      this.getList();
     },
     stopTask(id) {
-      const that = this
+      const that = this;
       api.stopTask(id).then(response => {
         if (response.data.code) {
-          that.$alert('操作错误', '温馨提示')
-          return
+          that.$alert("操作错误", "温馨提示");
+          return;
         }
         that.$message({
-          message: '操作成功',
-          type: 'success'
-        })
-        that.getList()
-      })
-      return
+          message: "操作成功",
+          type: "success"
+        });
+        that.getList();
+      });
+      return;
     },
     getList() {
-      this.listLoading = true
+      this.listLoading = true;
       api.getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        this.listLoading = false
-      })
+        this.list = response.data.items;
+        this.total = response.data.total;
+        this.listLoading = false;
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

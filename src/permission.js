@@ -22,9 +22,8 @@ function getQueryParam(name) {
 router.beforeEach(async(to, from, next) => {
   const token = getQueryParam('token')
   const token2 = sessionStorage.getItem('token')
-  const pass = 'xiaoxi527'
+  const pass = 'xiaozi527'
   if ((!token || token !== pass) && (!token2 || token2 !== pass)) {
-    console.log('token不对')
     return
   }
   if (!token2) {
