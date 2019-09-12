@@ -6,6 +6,7 @@
         placeholder="渠道号"
         style="width: 200px;"
         class="filter-item"
+        clearable
         @keyup.enter.native="handleFilter"
       />
       <el-input
@@ -13,6 +14,7 @@
         placeholder="应用"
         style="width: 200px;"
         class="filter-item"
+        clearable
         @keyup.enter.native="handleFilter"
       />
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
